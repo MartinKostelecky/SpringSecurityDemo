@@ -29,13 +29,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwtToken;
-        final String userName;
+        final String userEmail;
             if(authHeader == null || !authHeader.startsWith("Bearer ")) {
                 filterChain.doFilter(request,response);
                 return;
             }
             jwtToken = authHeader.substring(7);
-            userName = //todo extract the userEmail from JWT token
+            //we want to extract email using Spring getUsername method
+            userEmail = jwtService.extractUsername(jwtToken);
 
     }
 }

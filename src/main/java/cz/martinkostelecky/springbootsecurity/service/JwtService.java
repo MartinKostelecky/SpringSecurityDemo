@@ -69,6 +69,30 @@ public class JwtService {
                 .compact();
     }
 
+
+    /**
+     * checking if token belongs to user details
+     * @param token
+     * @param userDetails
+     * @return
+     */
+    public boolean isValidToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername())) && !isExpiredToken(token);
+    }
+
+    private boolean isExpiredToken(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    private Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+
+    /**
+     * this service class only (private) method for getting sign in key
+     * @return sign in key
+     */
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         //"HMAC" stands for "Hash-based Message Authentication Code." It is a specific type of
@@ -78,4 +102,5 @@ public class JwtService {
         //The HMAC construction involves a hash function (such as SHA-256 or SHA-3) and a secret key.
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 }
