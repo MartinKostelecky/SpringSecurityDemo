@@ -1,4 +1,4 @@
-package cz.martinkostelecky.springbootsecurity.repository;
+package cz.martinkostelecky.springbootsecurity.user;
 
 import cz.martinkostelecky.springbootsecurity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

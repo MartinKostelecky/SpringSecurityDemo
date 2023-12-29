@@ -1,4 +1,4 @@
-package cz.martinkostelecky.springbootsecurity.service;
+package cz.martinkostelecky.springbootsecurity.config;
 
 import io.jsonwebtoken.Claims;
 
@@ -32,7 +32,7 @@ public class JwtService {
 
     private Claims extractAllClaims(String token) {
         return Jwts
-                .parser()
+                .parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
                 .parseClaimsJws(token)

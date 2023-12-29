@@ -34,8 +34,8 @@ public class SecurityConfig {
                 //here disabled
                 .disable()
                 .authorizeHttpRequests()
-                // list of patterns?
-                .requestMatchers("")
+                // list of patterns or endpoints that does contain only methods dealing with authentication
+                .requestMatchers("/api/v1/auth/**")
                 // permission for this list
                 .permitAll()
                 // any other requests will be authenticated

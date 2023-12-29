@@ -1,6 +1,15 @@
 package cz.martinkostelecky.springbootsecurity.user;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.Collection;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,13 +18,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-
-//@Data lombok annotation is equivalent of getters and setters
+// @Data annotation takes care of generating the getter and setter methods, as well as the equals, hashCode, and toString methods.
 @Data
-//@Builder lombok annotation uses Builder Design Pattern to get an object without any inconsistent state or
-//arguments management issues. This annotation needs also an @AllArgsConstructor annotation
+// @Builder lombok annotation uses Builder Design Pattern to get an object without any inconsistent state or
+// arguments management issues. This annotation needs also an @AllArgsConstructor annotation
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,7 +39,6 @@ public class User implements UserDetails {
     //Tells Spring this is Enum of type String
     @Enumerated(EnumType.STRING)
     private Role role;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

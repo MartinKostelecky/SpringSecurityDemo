@@ -1,6 +1,6 @@
 package cz.martinkostelecky.springbootsecurity.config;
 
-import cz.martinkostelecky.springbootsecurity.repository.UserRepository;
+import cz.martinkostelecky.springbootsecurity.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
