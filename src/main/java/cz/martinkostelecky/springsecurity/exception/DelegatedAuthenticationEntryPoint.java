@@ -1,4 +1,4 @@
-package cz.martinkostelecky.insuredpersonsregisterwebapp.exception;
+package cz.martinkostelecky.springsecurity.exception;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

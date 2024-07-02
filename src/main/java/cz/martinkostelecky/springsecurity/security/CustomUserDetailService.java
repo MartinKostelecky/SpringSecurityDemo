@@ -1,6 +1,7 @@
 package cz.martinkostelecky.springsecurity.security;
 
 
+import cz.martinkostelecky.springsecurity.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomUserDetailService implements UserDetailsService {
 
-    private final cz.martinkostelecky.springsecurity.user.UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -24,7 +25,6 @@ public class CustomUserDetailService implements UserDetailsService {
         return  UserPrincipal.builder()
                 .userId(user.getId())
                 .email(user.getEmail())
-                //TODO
                 .authorities(List.of(new SimpleGrantedAuthority(user.getRole())))
                 .password(user.getPassword())
                 .build();

@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtIssuer {
 
-    public final cz.martinkostelecky.springsecurity.security.JwtProperties jwtProperties;
+    public final JwtProperties jwtProperties;
 
     public String issue(Request request) {
         var now = Instant.now();
@@ -24,14 +24,12 @@ public class JwtIssuer {
         return JWT.create()
                 .withSubject(String.valueOf(request.userId))
                 .withIssuedAt(now)
-                //TODO to minutes
-                .withExpiresAt(now.plus(Duration.ofDays(1)))
+                .withExpiresAt(now.plus(Duration.ofMinutes(5)))
                 .withClaim("email", request.getEmail())
-                //.withClaim("authorities", request.getRoles())
+                .withClaim("authorities", request.getRoles())
                 .sign(Algorithm.HMAC256(jwtProperties.getSecretKey()));
     }
 
-    //TODO
     @Getter
     @Builder
     public static class Request {

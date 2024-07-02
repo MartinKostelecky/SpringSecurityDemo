@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class JwtDecoder {
 
-    private final cz.martinkostelecky.springsecurity.security.JwtProperties jwtProperties;
+    private final JwtProperties jwtProperties;
 
     public DecodedJWT decode(String token) {
         return JWT.require(Algorithm.HMAC256(jwtProperties.getSecretKey()))

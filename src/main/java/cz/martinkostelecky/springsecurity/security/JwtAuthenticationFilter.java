@@ -21,7 +21,7 @@ import java.util.Optional;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
-    private final cz.martinkostelecky.springsecurity.security.JwtDecoder jwtDecoder;
+    private final JwtDecoder jwtDecoder;
 
     private final JwtToPrincipalConverter jwtToPrincipalConverter;
 
@@ -31,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         extractTokenFromRequest(request)
                 .map(jwtDecoder::decode)
                 .map(jwtToPrincipalConverter::convert)
-                .map(cz.martinkostelecky.springsecurity.security.UserPrincipalAuthenticationToken::new)
+                .map(UserPrincipalAuthenticationToken::new)
                 .ifPresent(authentication -> SecurityContextHolder.getContext().setAuthentication(authentication));
 
         filterChain.doFilter(request, response);
