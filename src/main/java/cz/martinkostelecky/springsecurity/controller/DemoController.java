@@ -11,6 +11,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("/api/v1")
 public class DemoController {
 
+    @RequestMapping (value = "/", method = GET)
+    public String opened() {
+        return "This can be seen by anyone.";
+    }
+
     @RequestMapping (value = "/secured", method = GET)
     //@AuthenticationPrincipal needed to retrieve principal data
     public String secured(@AuthenticationPrincipal UserPrincipal principal) {
